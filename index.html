@@ -2708,6 +2708,27 @@
           '접수시각': new Date().toLocaleString('ko-KR')
         };
 
+        function submitViaStandardForm() {
+          var form = document.createElement('form');
+          form.method = 'POST';
+          form.action = 'https://formsubmit.co/' + SUBMIT_EMAIL;
+          form.style.display = 'none';
+
+          var nextUrl = window.location.href.split('?')[0].split('#')[0] + '?submitted=1#apply-section';
+          payload._next = nextUrl;
+
+          Object.keys(payload).forEach(function (key) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = payload[key] == null ? '' : String(payload[key]);
+            form.appendChild(input);
+          });
+
+          document.body.appendChild(form);
+          form.submit();
+        }
+
         function fail() {
           submitBtn.disabled = false;
           submitBtn.textContent = '정책자금 한도 진단 신청하기';
@@ -2735,9 +2756,20 @@
             if (!ok) throw new Error((data && data.message) || 'submission failed');
             submitBtn.textContent = '접수 완료';
             showDone();
-          }).catch(fail);
+          }).catch(function () {
+            /* AJAX가 미활성화·CORS·네트워크 정책으로 막히면 일반 폼 POST로 자동 전환 */
+            try {
+              submitViaStandardForm();
+            } catch (err) {
+              fail();
+            }
+          });
         } catch (e) {
-          fail();
+          try {
+            submitViaStandardForm();
+          } catch (err2) {
+            fail();
+          }
         }
       });
     }
@@ -2754,7 +2786,14 @@
       });
     });
 
-    showStep(0, false);
+    if (window.location.search.indexOf('submitted=1') !== -1) {
+      showDone();
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname + '#apply-section');
+      }
+    } else {
+      showStep(0, false);
+    }
   })();
 })();
 </script>
