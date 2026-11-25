@@ -966,6 +966,75 @@ window.pfTrackRegistration = function () {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
   }
+
+  /* ──────────────────────────────
+     예시 안내 문구
+     ────────────────────────────── */
+  #pf-premium .risk-note,
+  #pf-premium .stats-note {
+    margin-top: 20px;
+    font-size: 12.6px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  #pf-premium .risk-note { margin-top: 24px; }
+  #pf-premium .stats-note { text-align: center; }
+
+  /* ──────────────────────────────
+     개인정보 동의
+     ────────────────────────────── */
+  #pf-premium .lf-agree-body { flex: 1; }
+  #pf-premium .lf-agree label { display: block; }
+  #pf-premium .lf-refusal { margin-top: 5px; font-size: 11.8px; color: #7A8A9E; line-height: 1.6; }
+  .policy-link {
+    padding: 0; border: 0; background: none; font: inherit; font-weight: 700;
+    color: var(--steel); cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+  }
+  .policy-link:hover { color: var(--navy); }
+  .footer-bottom-right { display: flex; align-items: center; gap: 18px; }
+
+  /* ──────────────────────────────
+     개인정보처리방침 모달
+     ────────────────────────────── */
+  .policy-modal { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .policy-modal[hidden] { display: none; }
+  .policy-modal__backdrop { position: absolute; inset: 0; background: rgba(7, 26, 51, .55); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+  .policy-modal__panel {
+    position: relative; width: 100%; max-width: 660px; max-height: min(86vh, 760px);
+    display: flex; flex-direction: column; background: #fff;
+    border-radius: 22px; overflow: hidden;
+    box-shadow: 0 40px 90px -36px rgba(7, 26, 51, .6);
+  }
+  .policy-modal__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 24px 26px 16px; border-bottom: 1px solid var(--line); }
+  .policy-modal__head h2 { margin: 0; font-size: 19px; font-weight: 800; color: var(--navy); letter-spacing: -0.025em; }
+  .policy-modal__head p { margin: 4px 0 0; font-size: 12.4px; color: var(--muted); }
+  .policy-modal__close {
+    width: 38px; height: 38px; flex: none; border-radius: 50%; border: 1px solid var(--line);
+    background: #fff; color: #33475F; font-size: 16px; line-height: 1; cursor: pointer;
+    display: grid; place-items: center; transition: background .18s ease, border-color .18s ease;
+  }
+  .policy-modal__close:hover { background: var(--slate-100); border-color: var(--slate-200); }
+  .policy-modal__body { padding: 20px 26px 6px; overflow-y: auto; font-size: 13.6px; color: #3E5169; line-height: 1.8; -webkit-overflow-scrolling: touch; }
+  .policy-modal__body h3 { margin: 20px 0 6px; font-size: 14.5px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+  .policy-modal__body h3:first-child { margin-top: 0; }
+  .policy-modal__body h3 em { font-style: normal; color: var(--sage); font-weight: 800; margin-right: 7px; letter-spacing: .02em; }
+  .policy-modal__body p { margin: 0 0 4px; }
+  .policy-modal__body ul { margin: 4px 0 0; padding-left: 18px; list-style: disc; }
+  .policy-modal__body li { margin: 3px 0; }
+  .policy-modal__body strong { color: var(--navy); font-weight: 700; }
+  .policy-modal__body .meta { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12.4px; color: var(--muted); }
+  .policy-modal__foot { padding: 16px 26px 22px; display: flex; justify-content: flex-end; background: var(--slate-50); border-top: 1px solid var(--line); }
+  .policy-modal__foot .btn { min-width: 120px; }
+  body.policy-open { overflow: hidden; }
+  @media (max-width: 640px) {
+    .policy-modal { padding: 12px; }
+    .policy-modal__panel { max-height: 88vh; border-radius: 18px; }
+    .policy-modal__head { padding: 18px 18px 14px; }
+    .policy-modal__body { padding: 16px 18px 4px; font-size: 13.2px; }
+    .policy-modal__foot { padding: 14px 18px 18px; }
+    .policy-modal__foot .btn { width: 100%; }
+    .footer-bottom-right { gap: 12px; }
+  }
 </style>
 </head>
 <body id="top">
@@ -1052,7 +1121,7 @@ window.pfTrackRegistration = function () {
         <button type="button" class="fund-chip" data-fund="수출 특화 자금"><span class="fc-t">수출 특화 자금</span><span class="fc-s">수출 실적 증진</span></button>
       </div>
       <a class="hero-cta-btn" href="#pf-form-anchor" id="pf-hero-cta">내 기업 한도 확인하기 →</a>
-      <p class="hero-notice">* 실제 한도·금리는 기업 신용도, 재무 현황, 신청 기관에 따라 달라질 수 있습니다.</p>
+      <p class="hero-notice">* 화면에 표시된 한도·금리·기간은 이해를 돕기 위한 대표 예시이며, 실제 승인 조건과 한도는 기업의 신용도·재무 현황·신청 기관 심사 기준에 따라 달라질 수 있습니다.</p>
     </div>
   </section>
 
@@ -1123,6 +1192,8 @@ window.pfTrackRegistration = function () {
           </div>
         </div>
       </div>
+
+      <p class="risk-note">※ 위 심사결과통보서와 사례는 이해를 돕기 위한 대표 예시입니다. 실제 심사 결과·한도·금리는 기업의 신용도와 재무 현황, 신청 기관의 심사 기준에 따라 달라질 수 있습니다.</p>
     </div>
   </section>
 
@@ -1214,6 +1285,7 @@ window.pfTrackRegistration = function () {
           <div class="stat-label">최대 한도 기업자금 확보</div>
         </div>
       </div>
+      <p class="stats-note">※ 표시된 실적과 사례 수치는 이해를 돕기 위한 대표 예시이며, 실제 한도와 승인 조건은 기업의 신용도·재무 현황에 따라 달라질 수 있습니다.</p>
     </div>
   </section>
 
@@ -1436,7 +1508,10 @@ window.pfTrackRegistration = function () {
 
             <div class="lf-agree">
               <input type="checkbox" id="pf-agree">
-              <label for="pf-agree">개인정보 수집·이용에 동의합니다. (수집항목: 이름·연락처·상담정보 / 이용목적: 경영자금 상담 / 보유기간: 상담 완료 후 6개월)</label>
+              <div class="lf-agree-body">
+                <label for="pf-agree">개인정보 수집·이용에 동의합니다. (수집항목: 이름·연락처·회사명·거주도시·진단 응답 / 이용목적: 경영자금 상담 / 보유기간: 상담 종료 후 6개월)</label>
+                <p class="lf-refusal">동의를 거부할 권리가 있으나, 거부 시 상담 신청이 제한됩니다. <button type="button" class="policy-link" data-open-policy>개인정보처리방침</button></p>
+              </div>
             </div>
 
             <div class="lf-nav"><button type="button" class="lf-prev">이전</button><button class="lf-submit" id="pf-submitBtn" type="button">정책자금 한도 진단 신청하기</button></div>
@@ -1491,7 +1566,6 @@ window.pfTrackRegistration = function () {
     <div class="footer-info">
       <span><strong>상호</strong>포유스퀘어 (FOR YOU SQUARE)</span>
       <span><strong>대표</strong>권대정</span>
-      <span><strong>사업자등록번호</strong>548-18-02198</span>
       <span><strong>연락처</strong><a href="tel:+821094398802">010-9439-8802</a></span>
       <span><strong>이메일</strong><a href="mailto:realoio@naver.com">realoio@naver.com</a></span>
       <span><strong>주소</strong>서울특별시 마포구 마포대로 144, 마포T타운 5층</span>
@@ -1505,10 +1579,102 @@ window.pfTrackRegistration = function () {
 
     <div class="footer-bottom">
       <span>&copy; <span id="year">2026</span> 포유스퀘어 (FOR YOU SQUARE). All rights reserved.</span>
-      <a class="up" href="#top">맨 위로 <span aria-hidden="true">&#8593;</span></a>
+      <div class="footer-bottom-right">
+        <button type="button" class="policy-link" data-open-policy>개인정보처리방침</button>
+        <a class="up" href="#top">맨 위로 <span aria-hidden="true">&#8593;</span></a>
+      </div>
     </div>
   </div>
 </footer>
+
+<!-- ══════════════ 개인정보처리방침 모달 ══════════════ -->
+<div class="policy-modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle" hidden>
+  <div class="policy-modal__backdrop" data-close-policy></div>
+  <div class="policy-modal__panel">
+    <div class="policy-modal__head">
+      <div>
+        <h2 id="privacyModalTitle">개인정보처리방침</h2>
+        <p>포유스퀘어는 상담 신청에 필요한 최소한의 개인정보만 수집합니다.</p>
+      </div>
+      <button type="button" class="policy-modal__close" data-close-policy aria-label="개인정보처리방침 닫기">&#10005;</button>
+    </div>
+    <div class="policy-modal__body" tabindex="0">
+      <h3><em>01</em>수집하는 개인정보 항목</h3>
+      <ul>
+        <li><strong>필수</strong> : 이름, 연락처, 회사명, 거주도시, 자금 진단 응답(필요자금·사업자유형·직원 수·업종·연매출·업력·신용점수·체납여부·추가상담)</li>
+        <li><strong>선택</strong> : 상담 시 문의 내용</li>
+        <li><strong>자동 수집</strong> : 접속 기기·브라우저 정보, 유입 경로, 체류 시간, 스크롤 깊이 등 서비스 이용 기록</li>
+      </ul>
+      <h3><em>02</em>개인정보의 수집·이용 목적</h3>
+      <ul>
+        <li>정책자금 한도 진단 및 상담 신청 접수·회신</li>
+        <li>기업별 자금·인증·재무 관련 안내 및 상담 이력 관리</li>
+        <li>상담 품질 개선과 서비스 이용 통계 분석</li>
+        <li>광고·캠페인 성과 측정(쿠키 및 Meta 픽셀)</li>
+      </ul>
+      <h3><em>03</em>개인정보의 보유·이용 기간</h3>
+      <p>상담 종료 후 <strong>6개월</strong>까지 보유·이용하며, 기간이 지나거나 동의를 철회하시면 지체 없이 파기합니다. 관계 법령에 따라 보존이 필요한 경우에는 해당 기간 동안 보관합니다.</p>
+      <h3><em>04</em>동의를 거부할 권리 및 불이익</h3>
+      <p>이용자는 개인정보 수집·이용 동의를 거부할 권리가 있습니다. 다만 동의를 거부하시면 상담 신청이 제한됩니다.</p>
+      <h3><em>05</em>개인정보의 제3자 제공 및 처리 위탁</h3>
+      <p>수집한 개인정보를 제3자에게 제공하지 않습니다. 상담 접수 알림 발송을 위해 이메일 전송 대행 서비스(FormSubmit)를 이용하며, 해당 목적 범위에서만 정보가 처리됩니다.</p>
+      <h3><em>06</em>문의처</h3>
+      <p>개인정보 관련 문의 : 전화 <a href="tel:+821094398802">010-9439-8802</a> · 이메일 <a href="mailto:realoio@naver.com">realoio@naver.com</a></p>
+      <p class="meta">시행일 : 2026년 11월 25일</p>
+    </div>
+    <div class="policy-modal__foot">
+      <button type="button" class="btn btn--primary" data-close-policy>확인</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var modal = document.getElementById('privacyModal');
+  if (!modal) return;
+  var panel = modal.querySelector('.policy-modal__panel');
+  var lastFocus = null;
+
+  function focusables() {
+    return Array.prototype.slice.call(
+      panel.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    ).filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+  }
+
+  function openModal() {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('policy-open');
+    var first = panel.querySelector('.policy-modal__close');
+    if (first) first.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('policy-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-open-policy]')) { e.preventDefault(); openModal(); return; }
+    if (e.target.closest('[data-close-policy]')) { e.preventDefault(); closeModal(); }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
+    if (e.key === 'Tab') {
+      var list = focusables();
+      if (!list.length) return;
+      var first = list[0];
+      var last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
 
 <script>
 (function () {
