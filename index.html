@@ -1107,8 +1107,8 @@ window.pfTrackRegistration = function () {
         </div>
         <div class="hlc-col period">
           <span class="hlc-label">기간</span>
-          <span class="hlc-value"><span class="pf-deadline">이달 말</span>까지!</span>
-          <span class="hlc-sub">이번 달 신청 접수분</span>
+          <span class="hlc-value"><span class="pf-deadline">12월 29일</span>까지!</span>
+          <span class="hlc-sub">12월 신청 접수분</span>
         </div>
       </div>
       <p class="fund-chips-label">어떤 자금이 필요하신가요?</p>
@@ -1335,7 +1335,7 @@ window.pfTrackRegistration = function () {
         승인 가능성을 진단해드립니다.
       </p>
 
-      <span class="cta-deadline">이번 달 신청 접수 <span class="pf-deadline">이달 말</span> 마감</span>
+      <span class="cta-deadline">신청 접수 <span class="pf-deadline">12월 29일</span>(화) 마감</span>
 
       
       <div class="lead-form-wrap" id="pf-lead-form">
@@ -1718,10 +1718,8 @@ window.pfTrackRegistration = function () {
     }
   }
 
-  /* ── 마감일 자동 갱신: 매월 말일 ── */
-  var now = new Date();
-  var lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-  var deadlineText = (lastDay.getMonth() + 1) + '/' + lastDay.getDate();
+  /* ── 신청 마감일: 2026년 12월 29일(화) 고정 ── */
+  var deadlineText = '12월 29일';
   document.querySelectorAll('#pf-premium .pf-deadline').forEach(function (el) {
     el.textContent = deadlineText;
   });

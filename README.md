@@ -52,7 +52,7 @@
 | 개인정보처리방침 내용 | `index.html` → `<div class="policy-modal" id="privacyModal">` |
 | 헤더 메뉴 | `index.html` → `<nav class="nav" id="primaryNav">` |
 | Meta 픽셀 ID | `index.html` → `fbq('init', '2558945831208196')` (2곳: 스크립트·noscript) |
-| 마감 문구(매월 말일 자동 표시) | 스크립트가 자동 계산하므로 수정 불필요 |
+| 마감 문구(2026년 12월 29일 고정) | `index.html` → `var deadlineText = '12월 29일';` 와 `.pf-deadline` 기본 문구 |
 
 ## 개인정보 · 예시 표기
 
